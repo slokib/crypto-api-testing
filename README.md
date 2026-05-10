@@ -51,27 +51,7 @@ This is **not** a trading bot — it’s purely for API exploration and benchmar
 ---
 ## 📁 Project Structure
 
-crypto-api-testing/
-│
-├── binance/
-│   ├── rest_tests.py
-│   ├── websocket_tests.py
-│
-├── okx/
-│   ├── rest_tests.py
-│   ├── websocket_tests.py
-│
-├── bybit/
-│   ├── rest_tests.py
-│   ├── websocket_tests.py
-│
-├── utils/
-│   ├── http.py
-│   ├── signatures.py
-│   ├── formatting.py
-│
-└── README.md
-
+Available Soon
 
 ---
 
