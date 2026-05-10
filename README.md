@@ -49,6 +49,57 @@ This is **not** a trading bot — it’s purely for API exploration and benchmar
 - Occasional rate‑limit quirks  
 
 ---
-
 ## 📁 Project Structure
 
+crypto-api-testing/
+│
+├── binance/
+│   ├── rest_tests.py
+│   ├── websocket_tests.py
+│
+├── okx/
+│   ├── rest_tests.py
+│   ├── websocket_tests.py
+│
+├── bybit/
+│   ├── rest_tests.py
+│   ├── websocket_tests.py
+│
+├── utils/
+│   ├── http.py
+│   ├── signatures.py
+│   ├── formatting.py
+│
+└── README.md
+
+
+---
+
+## 🧪 What I am Testing
+
+### **Market Data**
+- Orderbook snapshots  
+- Live orderbook streams  
+- Trades (tick‑by‑tick)  
+- Candles (1s → 1M)  
+
+### **Derivatives Data**
+- Funding rates  
+- Open interest  
+- Mark price  
+- Index price  
+
+### **Performance**
+- REST latency  
+- WebSocket stability  
+- Rate‑limit behavior  
+- Data consistency across exchanges  
+
+---
+
+📝 Notes
+This repo is for learning and testing, not production trading.
+
+Follow exchange rate limits.
+
+WebSocket connections may require reconnection logic.
