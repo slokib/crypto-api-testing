@@ -4,9 +4,7 @@ A lightweight sandbox for testing and comparing **Binance**, **OKX**, and **Bybi
 This project focuses on fetching real‑time and historical crypto market data using both REST and WebSocket endpoints.
 
 Useful for:
-- Traders exploring exchange data differences  
-- Quant researchers  
-- Bot developers  
+- Traders exploring exchange data differences   
 - Anyone learning exchange APIs  
 
 ---
