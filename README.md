@@ -1,3 +1,4 @@
+<img width="722" height="543" alt="Screenshot 2026-01-18 123122" src="https://github.com/user-attachments/assets/3602e9ef-7345-41a6-abf0-9811dde8bd76" />
 # crypto-api-testing
 
 A lightweight sandbox for testing and comparing **Binance**, **OKX**, and **Bybit** APIs.  
