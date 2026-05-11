@@ -1,4 +1,4 @@
-# crypto-api-testing
+# Crypto API Testing 💻📈
 
 <img width="361" height="271.5" alt="Screenshot 2026-01-18 123122" src="https://github.com/user-attachments/assets/3602e9ef-7345-41a6-abf0-9811dde8bd76" />
 
