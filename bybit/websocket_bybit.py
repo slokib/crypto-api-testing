@@ -21,7 +21,7 @@ def receive_orderbook(message):
     orderbook_data = message["data"]
     orderbook_data_ask = message["data"]["a"] # all asks in the orderbook
     orderbook_data_bid = message["data"]["b"] # all bids in the orderbook
-    print(orderbook_data)
+    #print(orderbook_data)
     # returns a snapshot of orderbook, than additions to the orderbook after
 
 ws.orderbook_stream(
@@ -38,12 +38,29 @@ def receive_recent_trades(message):
     for trade in message["data"]:
         # unpack dict values
         timestamp, symbol, side, size, price, direction, *rest = trade.values()
-    print(f"{side} trade on {symbol}: {size} @ {price}")
+    #print(f"{side} trade on {symbol}: {size} @ {price}")
     # expected output: Buy trade on BTCUSDT: 3 @ 79000.0
 
 ws.trade_stream(
     symbol=pair,
     callback=receive_recent_trades
+)
+
+def receive_ticker(message):
+    if "data" not in message:
+        return
+    
+    # extract just ticker data
+    tickerdata = message["data"] 
+    # get lastPrice value from data dictionary for the last traded price
+    l_price = tickerdata["lastPrice"]
+    # \r means go back to start of line, end means stay on the same line,
+    # so previous line is overwritten
+    print(f"\r{pair}'s Last Traded Price: {l_price}", end="")
+
+ws.ticker_stream(
+    symbol=pair,
+    callback=receive_ticker
 )
 
 # keep script running
