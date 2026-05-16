@@ -17,7 +17,8 @@ ba_p = ba_q = bb_p = bb_q = None # declare the best ask, and best bid vars (pric
 
 # add function to use to handle once orderbook data is received
 def receive_orderbook(message):
-    global ba_p, ba_q, bb_q, bb_p # global is used to bring in those vars from earlier
+    # global is used to bring in those vars from earlier
+    global ba_p, ba_q, bb_q, bb_p
     if "data" not in message:
         return
     ba_p = message["data"]["a"][0][0] # since depth for the book is 1 theres only one list indexed at zero
@@ -33,20 +34,18 @@ ws.orderbook_stream(
 
 trades = [] # for storing trades
 timestamp = symbol = side = size = price = direction = rest = None
-
 def receive_recent_trades(message):
     global timestamp, symbol, side, size, price, direction, rest, trades
     if "data" not in message:
         return
-    
     # loop through data as keys & values are inside a dictionary inside of a list
     for trade in message["data"]:
         # unpack dict values
         timestamp, symbol, side, size, price, direction, *rest = trade.values()
-        trades.append(f"{side} trade on {symbol}: {size} @ {price}") # string is added to list
+        # string is added to list
+        trades.append(f"{side} trade on {symbol}: {size} @ {price}")
+        # expected output: Buy trade on BTCUSDT: 3 @ 79000.0
         trades = trades[-7:] # limit list to 7 trades
-    #print(f"{side} trade on {symbol}: {size} @ {price}")
-    # expected output: Buy trade on BTCUSDT: 3 @ 79000.0
 
 ws.trade_stream(
     symbol=pair,
@@ -62,9 +61,6 @@ def receive_ticker(message):
     tickerdata = message["data"] 
     # get lastPrice value from data dictionary for the last traded price
     l_price = tickerdata["lastPrice"]
-    # \r means go back to start of line, end means stay on the same line,
-    # so previous line is overwritten
-    #print(f"\r{pair}'s Last Traded Price: {l_price}", end="")
 
 ws.ticker_stream(
     symbol=pair,
@@ -74,15 +70,15 @@ ws.ticker_stream(
 # final outputs, run a loop thats waits until stream has come in and vars finally are assigned to smthing
 while True:
     if ba_p is not None:
-        for t in trades[-7:]: # list created from before, will loop though all
-            print(f"\033[K {t}") # will print as many trades as it can before the limit below is hit
+        # the \033 thing was by claude for formatting coz idk how to do it
         print(f"\033[K {pair}'s Last Traded Price: {l_price}")
-        print(f"\033[K The best ask is {ba_p} with {ba_q} orders left") # the \033 thing was by claude smh
+        print(f"\033[K The best ask is {ba_p} with {ba_q} orders left")
         print(f"\033[K The best bid is {bb_p} with {bb_q} orders left")
+        if trades is not None:
+            # will loop through the last 7 trades, then reverse it so the most recent is first
+            for t in reversed(trades[-7:]):
+                print(f"\033[K {t}")
         total_lines = 3 + len(trades)
-        print(f"\033[{total_lines}A", end="") # Change the number before the 'A' for how many lines you are printing
+        print(f"\033[{total_lines}A", end="")
+    # keep script running
     time.sleep(0.00000000000001)
-
-# keep script running
-while True:
-    time.sleep(0.0000000000000000000000001)
