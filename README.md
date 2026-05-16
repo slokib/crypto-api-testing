@@ -30,19 +30,19 @@ This is **not** a trading bot — it’s purely for API exploration and benchmar
 
 ## 📦 Supported Exchanges
 
-### **Binance**
+### **Binance (SOON)**
 - REST + WebSocket  
 - Spot + Futures  
 - Fast responses, good documentation  
 - Some endpoints require API keys  
 
-### **OKX**
+### **OKX (SOON)**
 - REST + WebSocket  
 - Spot + Futures + Options  
 - Very structured API  
 - Most endpoints require signing  
 
-### **Bybit**
+### **Bybit (WEBSOCKET DONE)**
 - REST + WebSocket  
 - Spot + USDT/USDC Perps  
 - Clean endpoints  
